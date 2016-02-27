@@ -1,0 +1,2 @@
+module MobilesuitsHelper
+end
