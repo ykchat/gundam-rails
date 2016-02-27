@@ -10,7 +10,11 @@ development:
       # of host:port pairs. (required)
       #hosts:
       #  - localhost:27017
-      uri: 'mongodb://192.168.2.6:27017/gundam_rails_development'
+      uri:  <%= ENV['MONGO_PORT_27017_TCP_ADDR'] ? 
+                    # for Docker link
+                    "mongodb://#{ENV['MONGO_PORT_27017_TCP_ADDR']}/gundam_express" : 
+                    'mongodb://192.168.2.6:27017/gundam_rails_development'
+            %>
       options:
         # Change the default write concern. (default = { w: 1 })
         # write:
@@ -94,7 +98,11 @@ test:
       #database: gundam_rails_test
       #hosts:
       #  - localhost:27017
-      uri: 'mongodb://192.168.2.6:27017/gundam_rails_test'
+      uri:  <%= ENV['MONGO_PORT_27017_TCP_ADDR'] ? 
+                    # for Docker link
+                    "mongodb://#{ENV['MONGO_PORT_27017_TCP_ADDR']}/gundam_express" : 
+                    'mongodb://192.168.2.6:27017/gundam_rails_development'
+            %>
       options:
         read: primary
         # In the test environment we lower the retries and retry interval to
