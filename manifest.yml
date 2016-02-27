@@ -1,0 +1,9 @@
+---
+applications:
+- name: gundam-rails
+  memory: 256MB
+  random-route: true
+  buildpack: ruby_buildpack
+  command: rails s -b 0.0.0.0 -p $PORT
+  services:
+   - cf-mongo
